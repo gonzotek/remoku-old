@@ -1,0 +1,54 @@
+<script>
+ var callback = "putXMLhere();";
+ 
+function getDataFromServer(id, url) {
+
+    // Fetch the element pointed to by the id. If it exists, we destroy it so we can create a new one.
+    oScript = document.getElementById(id);
+
+    // Point at the script tag, if it exists
+    var head = document.getElementsByTagName("head").item(0);
+     // Destroy the tag, if it exists
+    if (oScript) {
+    // Destory object
+    head.removeChild(oScript);
+    }<p>    // Create the new script tag
+    oScript = document.createElement("script");
+
+    // Setup the src attribute of the script tag
+    sendPath = encodeURIComponent("/MapsService/V1/geocode?appid=YahooDemo&location=78704");
+    wholeurl = url + "?path=" + sendPath;
+    oScript.setAttribute("src", wholeurl);
+
+    // Set the id attribute of the script tag
+    oScript.setAttribute("id",id);
+
+    // Create the new script tag which causes the proxy to be called
+    head.appendChild(oScript);
+    // Asynchronous script tag properties -- a proprietary IE "feature"
+    if (BROWSER_IS_IE) {
+        if  (oScript.readyState == "loaded") {
+        eval(callback);
+        oScript.onreadystatechange = null;
+       } else {
+        oScript.onreadystatechange = CheckAgain;
+       }
+    // All other web browsers just do the callback function
+    } else {
+       eval(callback);
+    }
+}
+ 
+// Used by IE to handle state changes
+function CheckAgain() {
+  if (oScript.readyState == "loaded") {
+      eval(callback);
+      oScript.onreadystatechange = null;
+    } 
+}</p>// Once the script tag has loaded the data, it's available in the global Javascript variable "xml" which was sent from the proxy.
+ function putXMLhere() {
+     ohandle = document.getElementById("locationData");
+     ohandle.innerHTML = ohandle.innerHTML + "<form><input type='button' value='View XML' onClick='alert(xml); return true;' /></form>";
+  }
+</script>
+

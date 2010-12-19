@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>Remoku</title>
+<link rel="icon" 
+      type="image/png" 
+      href="favicon.png">
+<link rel="stylesheet" href="./remoku.css" type="text/css" />
+<script src="./webtoolkit.url.js"></script>
+<script src="./remoku.js"></script>
+</head>
+
+<body>
+	<div id="remote">
+		<button id="Back">Back</button><button id="Home">Home</button>
+		<button id="Up">&nbsp;&uarr;&nbsp;</button>
+		<button id="Left">&larr;</button><button id="Select">OK</button><button id="Right">&rarr;</button>
+		<button id="Down">&nbsp;&darr;&nbsp;</button>
+		<button id="InstantReplay">Replay</button><button id="Info">Info</button>
+		<button id="Rev">&nbsp;&#171;&nbsp;</button><button id="Play">&#9658;||</button><button id="Fwd">&nbsp;&#187;&nbsp;</button>
+	</div>
+	
+	<div id="searchdiv">
+		 <!--button id="Search">Search</button-->
+		 <button id="Enter">Enter</button>
+		 <input id="searchtext" type="search" />
+	</div>
+	<div id="configscreen">
+		<input id="octet1" type="tel" value="192" />
+		<input id="octet2" type="tel" value="168" />
+		<input id="octet3" type="tel" value="1"/>
+		<input id="octet4" type="tel" value="1"/>
+	</div>
+	<div id="iform">
+		<!--iframe id="rokuresponse" name="rokuresponse"></iframe-->
+		<form id="rokupost" method="post" target="rokuresponse"></form>
+	</div>
+<button id="Config">Cfg</button>
+</body>
+</html>

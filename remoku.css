@@ -1,0 +1,151 @@
+/*remoku.css*/
+
+body{
+margin:0px;
+background:black;
+}
+
+div#remote, div#searchdiv{
+width:100%;
+margin: 0 auto;
+text-align:center;
+}
+
+div#iform{
+visibility: hidden;
+display: none;
+}
+
+button#Config{
+left:0px;
+top:380px;
+}
+
+div#configscreen{
+visibility: hidden;
+display: none;
+}
+
+div#configscreen input#octet1{
+position:absolute;
+left:10px;
+top:330px;
+width:50px;
+} 
+
+div#configscreen input#octet2{
+position:absolute;
+left:75px;
+top:330px;
+width:50px;
+} 
+
+div#configscreen input#octet3{
+position:absolute;
+left:140px;
+top:330px;
+width:50px;
+} 
+
+div#configscreen input#octet4{
+position:absolute;
+left:205px;
+top:330px;
+width:50px;
+} 
+
+div#remote button,div#searchdiv button, button{
+margin: 3px;
+padding: 7px 25px;
+position: absolute;
+background: purple;
+border: none;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+-khtml-border-radius: 20px;
+border-radius: 20px;
+color: #ffffff;
+font: 18px Georgia, "Times New Roman", Times, serif;
+text-align: center;
+letter-spacing: 1px;
+text-shadow: #000000 0 1px 1px ;
+text-transform: uppercase;
+}
+ 
+div#remote button#Home{
+left:217px;
+top:2px;
+}
+
+div#remote button#Back{
+left:0px;
+top:2px;
+}
+
+div#remote button#Up{
+left:130px;
+top:50px;
+}
+
+div#remote button#Down{
+left:130px;
+top:160px;
+}
+ 
+div#remote button#Select{
+left:125px;
+top:105px;
+}
+ 
+div#remote button#Left{
+left:55px;
+top:105px;
+}
+ 
+div#remote button#Right{
+left:203px;
+top:105px;
+}
+ 
+
+div#remote button#InstantReplay{
+left:0px;
+top:195px;
+}
+
+div#remote button#Info{
+left:228px;
+top:195px;
+}
+
+div#remote button#Rev{
+left:50px;
+top:255px;
+}
+
+div#remote button#Play{
+left:122px;
+top:255px;
+}
+
+div#remote button#Fwd{
+left:207px;
+top:255px;
+}
+
+div#searchdiv button#Search{
+left:0px;
+top:320px;
+}
+
+div#searchdiv button#Enter{
+left:160px;
+top:320px;
+}
+
+div#searchdiv input#searchtext{
+position:absolute;
+left:0px;
+top:330px;
+width:160px;
+} 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<title>Remoku</title>
+		<script type="text/javascript">
+		var rokuFound = false;
+		var lastOctet = 1;
+		var address   = "";
+		var rokus     = "";
+		function findRokus(){
+			var ifr = document.getElementById('apps');
+			if (lastOctet<20){
+				rokuFound = false;
+				address = "192.168.1."+lastOctet;
+				ifr.src = "http://" + address +":8060/query/apps";
+				setTimeout('checkRokuLoadResult()',500);
+			}else{
+				lastOctet = 1;
+				ifr.src = "about:blank";
+				document.getElementById('rokus').innerHTML=rokus;
+				return true;
+				}
+		}
+		
+		function loadedframe(){
+			rokuFound = true;
+		}
+		
+		function checkRokuLoadResult(){
+			var result 
+			if (rokuFound == true ){
+			 result = "Loaded: " + address + "<br>";
+			 rokus += address;
+			} else {
+			 result = "Not Loaded: " + address + "<br>";
+			}
+			document.getElementById('rokus').innerHTML=result;
+			lastOctet++;
+			findRokus();
+		}
+
+		window.onload = function(){
+			//findRokus();
+
+			client = new XMLHttpRequest();
+			client.open('POST', 'http://192.168.1.10'  + ':8060/keypress/Home' , false);
+			try { client.send(); }
+			catch(e) { console.log(e); }
+
+		}
+		</script>
+	</head>
+	<body>
+		<div id="content"><iframe style="visibility:none; display: none; " id="apps" src="about:blank" onload="loadedframe();"></iframe></div>
+		<div id="rokus"></div>
+	</body>
+</html>
