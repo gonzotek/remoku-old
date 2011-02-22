@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Remoku App Input Test</title>
+<script>
+function clickme(){
+	var textin = document.getElementById("in").value;
+	//alert(textin);
+	
+	//txt="<note>";
+	//txt=txt+"<to>Tove</to>";
+	//txt=txt+"<from>Jani</from>";
+	//txt=txt+"<heading>Reminder</heading>";
+	//txt=txt+"<body>Don't forget me this weekend!</body>";
+	//txt=txt+"</note>";
+
+	if (window.DOMParser)
+	  {
+	  parser=new DOMParser();
+	  xmlDoc=parser.parseFromString(textin,"text/xml");
+	  }
+	else // Internet Explorer
+	  {
+	  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+	  xmlDoc.async="false";
+	  xmlDoc.loadXML(textin);
+	  }
+	var apps = xmlDoc.getElementsByTagName("app");
+	for (i=0;i<apps.length;i++){
+	//xmlDoc.getElementsByTagName("app")[0].childNodes[0].nodeValue
+	var appid = apps[i].attributes.getNamedItem("id").value;
+	var appname = (apps[i].childNodes[0].nodeValue);
+	alert(appname + " " + appid);
+	//alert(apps[i].childNodes[0].nodeValue);
+	//alert(apps[i].attributes.getNamedItem("id").value);
+	
+	}
+	
+	//var apps = xmlDoc.getElementsByTagName("app")[0].childNodes[0].nodeValue;
+		// .attributes.getNamedItem("id").value;
+	//document.getElementById("to").innerHTML=xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
+	//document.getElementById("from").innerHTML=xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
+	//document.getElementById("message").innerHTML=xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+}
+</script>
+</head>
+<body>
+<div id="container">
+<textarea id="in" style="width:120px; height:120px;"></textarea>
+<button id="clickme" onclick="clickme();">Click Me</button>
+</div>
+</body>
+</html>
