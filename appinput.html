@@ -4,51 +4,67 @@
 <meta charset="utf-8">
 <title>Remoku App Input Test</title>
 <script>
+var rokupostframe;
+var rokuAddress = "192.168.1.10";
+
+function rokupost(action, param){
+	
+	if(!rokupostframe){
+	rokupostframe = document.createElement("iframe");
+	rokupostframe.name="rokuresponse"
+	rokupostframe.id="rokuresponse";
+	rokupostframe.style.visibility="hidden";
+	rokupostframe.style.display="none";
+	rokupostframe = document.body.appendChild(rokupostframe);
+	}
+	var rokupost = document.getElementById('rokupost');
+	rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" +
+		action + "/" + param);
+	rokupost.submit();
+	//rokupost.focus();
+	return false;
+}
+
+function rokulaunch(id){
+	//alert (id);
+	rokupost("launch",id);
+	}
 function clickme(){
 	var textin = document.getElementById("in").value;
-	//alert(textin);
-	
-	//txt="<note>";
-	//txt=txt+"<to>Tove</to>";
-	//txt=txt+"<from>Jani</from>";
-	//txt=txt+"<heading>Reminder</heading>";
-	//txt=txt+"<body>Don't forget me this weekend!</body>";
-	//txt=txt+"</note>";
-
+	var applist = document.getElementById("applist");
 	if (window.DOMParser)
-	  {
-	  parser=new DOMParser();
-	  xmlDoc=parser.parseFromString(textin,"text/xml");
-	  }
+		{
+		parser=new DOMParser();
+		xmlDoc=parser.parseFromString(textin,"text/xml");
+		}
 	else // Internet Explorer
-	  {
-	  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-	  xmlDoc.async="false";
-	  xmlDoc.loadXML(textin);
-	  }
+		{
+		xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		xmlDoc.async="false";
+		xmlDoc.loadXML(textin);
+		}
 	var apps = xmlDoc.getElementsByTagName("app");
-	for (i=0;i<apps.length;i++){
-	//xmlDoc.getElementsByTagName("app")[0].childNodes[0].nodeValue
-	var appid = apps[i].attributes.getNamedItem("id").value;
-	var appname = (apps[i].childNodes[0].nodeValue);
-	alert(appname + " " + appid);
-	//alert(apps[i].childNodes[0].nodeValue);
-	//alert(apps[i].attributes.getNamedItem("id").value);
-	
-	}
-	
-	//var apps = xmlDoc.getElementsByTagName("app")[0].childNodes[0].nodeValue;
-		// .attributes.getNamedItem("id").value;
-	//document.getElementById("to").innerHTML=xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
-	//document.getElementById("from").innerHTML=xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
-	//document.getElementById("message").innerHTML=xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+	for (i=0;i<apps.length;i++)
+		{
+		var appid = apps[i].attributes.getNamedItem("id").value;
+		var appname = (apps[i].childNodes[0].nodeValue);
+		//alert(appname + " " + appid);
+		var appitem = document.createElement('li');
+		appitem.innerHTML = "<a href='#"+appid+"' onclick='rokulaunch("+ appid +");'>" + "<img src='http://" + rokuAddress +":8060/query/icon/" + appid + "'>" +  appname + "</>";
+		applist.appendChild(appitem);
+		}
 }
 </script>
 </head>
 <body>
 <div id="container">
 <textarea id="in" style="width:120px; height:120px;"></textarea>
-<button id="clickme" onclick="clickme();">Click Me</button>
+<button id="clickme" onclick="clickme();">Submit Apps</button>
 </div>
+<div id="apps">
+<ul id="applist">
+</ul>
+</div>
+<form id="rokupost" method="post" target="rokuresponse"></form>
 </body>
 </html>
