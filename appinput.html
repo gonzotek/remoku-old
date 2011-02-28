@@ -7,6 +7,22 @@
 var rokupostframe;
 var rokuAddress = "192.168.1.10";
 
+
+	var loadingImage = false;
+	function LoadImage(imageName,imageFile)
+	{
+	  if ((!document.images) || loadingImage) return;
+	  loadingImage = true;
+	  if (document.images[imageName].src.indexOf(imageFile)<0)
+	  {
+	    document.images[imageName].src = imageFile;
+	  }
+	  loadingImage = false;
+	}
+	//LoadImage('image0','number0.gif');
+
+
+
 function rokupost(action, param){
 	
 	if(!rokupostframe){
@@ -32,6 +48,7 @@ function rokulaunch(id){
 function clickme(){
 	var textin = document.getElementById("in").value;
 	var applist = document.getElementById("applist");
+	var apparray = [];
 	if (window.DOMParser)
 		{
 		parser=new DOMParser();
@@ -53,6 +70,9 @@ function clickme(){
 		appitem.innerHTML = "<a href='#"+appid+"' onclick='rokulaunch("+ appid +");'>" + "<img src='http://" + rokuAddress +":8060/query/icon/" + appid + "'>" +  appname + "</>";
 		applist.appendChild(appitem);
 		}
+		// Move innerHTML calls to array, 
+		
+		
 }
 </script>
 </head>
