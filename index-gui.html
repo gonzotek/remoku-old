@@ -1,45 +1,144 @@
 <!DOCTYPE html>
-<html manifest="cache.manifest">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>Remoku</title>
-<link rel="icon" 
-      type="image/png" 
-      href="favicon.png">
-<link rel="stylesheet" href="./remoku.css" type="text/css" />
-<script src="./webtoolkit.url.js"></script>
-<script src="./remoku.js"></script>
-</head>
+<link rel="icon" type="image/png" href="favicon.png">
+<!--link rel="stylesheet" href="./remoku.css" type="text/css" /-->
+<!--script src="./remoku.js"></script-->
+<style>
+img{
+	border:0;
+	padding:0;
+	margin:0;
+		border-width: 0px;
+}
 
-<body>
-	<div id="remote">
-		<button id="Back">Back</button><button id="Home">Home</button>
-		<button id="Up">&nbsp;&uarr;&nbsp;</button>
-		<button id="Left">&larr;</button><button id="Select">OK</button><button id="Right">&rarr;</button>
-		<button id="Down">&nbsp;&darr;&nbsp;</button>
-		<button id="InstantReplay">Replay</button><button id="Info">Info</button>
-		<button id="Rev">&nbsp;&#171;&nbsp;</button><button id="Play">&#9658;||</button><button id="Fwd">&nbsp;&#187;&nbsp;</button>
-	</div>
+body
+{
+		border-width: 0px;
+height:20px;
+	background-color:#000000;
+	border:0;
+	padding:0;
+	margin:0;
+}
+
+td,tr{
+	border-width: 0px;
+	padding: 0px;
+	border-style: none;
+	border-color: gray;
+	border-collapse: collapse;
+	background-color: rgb(0, 0, 0);
+	-moz-border-radius: ;
+}
+
+tbody{
+	border-width: 0px;
+	padding: 0px;
+	border-style: none;
+	border-color: gray;
+	border-collapse: collapse;
+	background-color: rgb(0, 0, 0);
+	-moz-border-radius: ;
+}
 	
-	<div id="searchdiv">
-		 <!--button id="Search">Search</button-->
-		 <button id="Enter">Enter</button>
-		 <input id="searchtext" type="search" />
-	</div>
-	<div id="configscreen">
-		<input id="octet1" type="tel" value="192" />
-		<input id="octet2" type="tel" value="168" />
-		<input id="octet3" type="tel" value="1"/>
-		<input id="octet4" type="tel" value="1"/>
-	</div>
-	<div id="iform">
-		<!--iframe id="rokuresponse" name="rokuresponse"></iframe-->
-		<form id="rokupost" method="post" target="rokuresponse"></form>
-	</div>
-<button id="Config">Cfg</button>
+table{
+	border-width: 0px;
+	border-spacing: ;
+	border-style: none;
+	border-color: gray;
+	border-collapse: collapse;
+	background-color: rgb(0, 0, 0);
+	display:table;
+}
 
+</style>
+
+</head>
+<body>
+
+<table id="maintable">
+	<tbody><tr>
+		<td colspan="3"><img src="images/top_edge.png"></td>
+	</tr>
+	<tr>
+		<td rowspan="6"><img src="images/left_edge.png"></td>
+		<td>
+			<table >
+				<tbody><tr>
+					<td><img src="images/back.png" class="link" onclick="sendKey(&#39;Back&#39;);"></td>
+					<td><img src="images/home.png" class="link" onclick="sendKey(&#39;Home&#39;);"></td>
+				</tr>
+			</tbody></table>
+		</td>
+		<td rowspan="6"><img src="images/right_edge.png"></td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tbody><tr>
+					<td><img src="images/top_left_corner.png"></td>
+					<td><img src="images/up.png" class="link" onclick="sendKey(&#39;Up&#39;);"></td>
+					<td><img src="images/top_right_corner.png"></td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tbody><tr>
+					<td><img src="images/left.png" class="link" onclick="sendKey(&#39;Left&#39;);"></td>
+					<td><img src="images/ok.png" class="link" onclick="sendKey(&#39;Select&#39;);"></td>
+					<td><img src="images/right.png" class="link" onclick="sendKey(&#39;Right&#39;);"></td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tbody><tr>
+					<td><img src="images/bottom_left_corner.png"></td>
+					<td><img src="images/down.png" class="link" onclick="sendKey(&#39;Down&#39;);"></td>
+					<td><img src="images/bottom_right_corner.png"></td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tbody><tr>
+					<td><img src="images/replay.png" class="link" onclick="sendKey(&#39;InstantReplay&#39;);"></td>
+					<td><img src="images/info.png" class="link" onclick="sendKey(&#39;Info&#39;);"></td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tbody><tr>
+					<td><img src="images/previous.png" class="link" onclick="sendKey(&#39;Rev&#39;);"></td>
+					<td><img src="images/play.png" class="link" onclick="sendKey(&#39;Play&#39;);"></td>
+					<td><img src="images/next.png" class="link" onclick="sendKey(&#39;Fwd&#39;);"></td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3"><img src="images/bottom_edge.png"></td>
+	</tr>
+	<tr>
+		<td colspan="3" style="font-size: 8pt;" align="center">IP: <input type="text" id="txtIP" name="txtIP" value="192.168.13.180:8060"></td>
+	</tr>
+</tbody></table>
+ 
 </body>
 </html>
