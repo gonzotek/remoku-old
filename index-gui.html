@@ -11,16 +11,15 @@
 <!--script src="./remoku.js"></script-->
 <style>
 img{
-	border:0;
-	padding:0;
-	margin:0;
-		border-width: 0px;
+	padding:0px;
+	margin:0px;
+	border-width: 0px;
+	float:left;
 }
 
 body
 {
-		border-width: 0px;
-height:20px;
+	border-width: 0px;
 	background-color:#000000;
 	border:0;
 	padding:0;
@@ -31,28 +30,16 @@ td,tr{
 	border-width: 0px;
 	padding: 0px;
 	border-style: none;
-	border-color: gray;
 	border-collapse: collapse;
 	background-color: rgb(0, 0, 0);
-	-moz-border-radius: ;
 }
 
-tbody{
-	border-width: 0px;
-	padding: 0px;
-	border-style: none;
-	border-color: gray;
-	border-collapse: collapse;
-	background-color: rgb(0, 0, 0);
-	-moz-border-radius: ;
-}
 	
 table{
 	border-width: 0px;
-	border-spacing: ;
+	border-spacing:0px ;
 	border-style: none;
-	border-color: gray;
-	border-collapse: collapse;
+	border-collapse: seperate;
 	background-color: rgb(0, 0, 0);
 	display:table;
 }
@@ -63,82 +50,82 @@ table{
 <body>
 
 <table id="maintable">
-	<tbody><tr>
+	<tr>
 		<td colspan="3"><img src="images/top_edge.png"></td>
 	</tr>
 	<tr>
 		<td rowspan="6"><img src="images/left_edge.png"></td>
 		<td>
 			<table >
-				<tbody><tr>
-					<td><img src="images/back.png" class="link" onclick="sendKey(&#39;Back&#39;);"></td>
-					<td><img src="images/home.png" class="link" onclick="sendKey(&#39;Home&#39;);"></td>
+				<tr>
+					<td><img src="images/back.png" class="link"></td>
+					<td><img src="images/home.png" class="link"></td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 		<td rowspan="6"><img src="images/right_edge.png"></td>
 	</tr>
 	<tr>
 		<td>
 			<table >
-				<tbody><tr>
+				<tr>
 					<td><img src="images/top_left_corner.png"></td>
-					<td><img src="images/up.png" class="link" onclick="sendKey(&#39;Up&#39;);"></td>
+					<td><img src="images/up.png" class="link"></td>
 					<td><img src="images/top_right_corner.png"></td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<table >
-				<tbody><tr>
-					<td><img src="images/left.png" class="link" onclick="sendKey(&#39;Left&#39;);"></td>
-					<td><img src="images/ok.png" class="link" onclick="sendKey(&#39;Select&#39;);"></td>
-					<td><img src="images/right.png" class="link" onclick="sendKey(&#39;Right&#39;);"></td>
+				<tr>
+					<td><img src="images/left.png" class="link"></td>
+					<td><img src="images/ok.png" class="link"></td>
+					<td><img src="images/right.png" class="link"></td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<table >
-				<tbody><tr>
+				<tr>
 					<td><img src="images/bottom_left_corner.png"></td>
-					<td><img src="images/down.png" class="link" onclick="sendKey(&#39;Down&#39;);"></td>
+					<td><img src="images/down.png" class="link"></td>
 					<td><img src="images/bottom_right_corner.png"></td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<table >
-				<tbody><tr>
-					<td><img src="images/replay.png" class="link" onclick="sendKey(&#39;InstantReplay&#39;);"></td>
-					<td><img src="images/info.png" class="link" onclick="sendKey(&#39;Info&#39;);"></td>
+				<tr>
+					<td><img src="images/replay.png" class="link"></td>
+					<td><img src="images/info.png" class="link"></td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<table >
-				<tbody><tr>
-					<td><img src="images/previous.png" class="link" onclick="sendKey(&#39;Rev&#39;);"></td>
-					<td><img src="images/play.png" class="link" onclick="sendKey(&#39;Play&#39;);"></td>
-					<td><img src="images/next.png" class="link" onclick="sendKey(&#39;Fwd&#39;);"></td>
+				<tr>
+					<td><img src="images/previous.png" class="link"></td>
+					<td><img src="images/play.png" class="link"></td>
+					<td><img src="images/next.png" class="link"></td>
 				</tr>
-			</tbody></table>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="3"><img src="images/bottom_edge.png"></td>
 	</tr>
 	<tr>
-		<td colspan="3" style="font-size: 8pt;" align="center">IP: <input type="text" id="txtIP" name="txtIP" value="192.168.13.180:8060"></td>
+		<td colspan="3" style="font-size: 8pt;" id="ip">IP: <input type="text" id="txtIP" name="txtIP" value="192.168.1.5"></td>
 	</tr>
-</tbody></table>
+</table>
  
 </body>
 </html>
