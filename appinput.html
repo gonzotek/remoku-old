@@ -2,26 +2,24 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 <title>Remoku App Input Test</title>
+<style>
+body{text-align:center;}
+.icons{max-height:50px;}
+li{float:left; list-style-type: none; text-align:center; margin:10px;}
+a{text-decoration:none;color:black;}
+</style>
+
 <script>
 var rokupostframe;
 var rokuAddress = "192.168.1.10";
+var appidarray = [];
 
-
-	var loadingImage = false;
-	function LoadImage(imageName,imageFile)
-	{
-	  if ((!document.images) || loadingImage) return;
-	  loadingImage = true;
-	  if (document.images[imageName].src.indexOf(imageFile)<0)
-	  {
-	    document.images[imageName].src = imageFile;
-	  }
-	  loadingImage = false;
+function loadRokuImages(){
+	var appid = appidarray.shift();
+	document.getElementById(appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
 	}
-	//LoadImage('image0','number0.gif');
-
-
 
 function rokupost(action, param){
 	
@@ -60,16 +58,23 @@ function clickme(){
 		xmlDoc.async="false";
 		xmlDoc.loadXML(textin);
 		}
-	var apps = xmlDoc.getElementsByTagName("app");
+	apps = xmlDoc.getElementsByTagName("app");
 	for (i=0;i<apps.length;i++)
 		{
 		var appid = apps[i].attributes.getNamedItem("id").value;
 		var appname = (apps[i].childNodes[0].nodeValue);
 		//alert(appname + " " + appid);
 		var appitem = document.createElement('li');
-		appitem.innerHTML = "<a href='#"+appid+"' onclick='rokulaunch("+ appid +");'>" + "<img src='http://" + rokuAddress +":8060/query/icon/" + appid + "'>" +  appname + "</>";
+		appitem.innerHTML = "<a href='#"+appid+"' onclick='rokulaunch("+ appid +");'>" +
+		"<img class='icons' id=" + appid + " src='' onload='loadRokuImages()'><br>" + 
+		appname + "</>"; //src='http://' + rokuAddress +':8060/query/icon/' + appid
 		applist.appendChild(appitem);
+		appidarray.push(appid);
 		}
+		
+	appid = appidarray.shift();
+	document.getElementById(appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
+
 		// Move innerHTML calls to array, 
 		
 		
