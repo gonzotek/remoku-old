@@ -5,15 +5,14 @@
 		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 		<title>Remoku</title>
 		<script type="text/javascript">
-
-      //Roku Discovery Code
 		var rokuFound = false;
 		var lastOctet = 1;
 		var address   = "";
-		var rokus     = "";
+		var rokus     = [];
+		var rokuCount = 2;
 		function findRokus(){
 			var ifr = document.getElementById('apps');
-			if (lastOctet<20){
+			if (lastOctet<20 || rokus.count() != rokuCount){
 				rokuFound = false;
 				address = "192.168.1."+lastOctet;
 				ifr.src = "http://" + address +":8060/query/apps";
@@ -34,7 +33,7 @@
 			var result 
 			if (rokuFound == true ){
 			 result = "Loaded: " + address + "<br>";
-			 rokus += address;
+			 rokus.push(address);
 			} else {
 			 result = "Not Loaded: " + address + "<br>";
 			}
@@ -44,12 +43,12 @@
 		}
 
 		window.onload = function(){
-			//findRokus();
+			findRokus();
 
-			client = new XMLHttpRequest();
-			client.open('POST', 'http://192.168.1.10'  + ':8060/keypress/Home' , false);
-			try { client.send(); }
-			catch(e) { console.log(e); }
+			//client = new XMLHttpRequest();
+			//client.open('POST', 'http://192.168.1.10'  + ':8060/keypress/Home' , false);
+			//try { client.send(); }
+			//catch(e) { console.log(e); }
 
 		}
 		</script>
