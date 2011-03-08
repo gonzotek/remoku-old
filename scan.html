@@ -6,7 +6,7 @@
 <title>Remoku</title>
 <style>
 .address{
-	width:30px;}
+	width:25px;}
 </style>
 
 <script type="text/javascript">
@@ -28,7 +28,7 @@ function findRokus(){
 		lastOctet = 1;
 		ifr.src = "about:blank";
 		//document.getElementById('rokus').innerHTML=rokus;
-		var rokupicker = "<form>Use Roku: <select>";
+		var rokupicker = "<form>Control this Roku: <select>";
 		while(rokus.length>0){
 			rokupicker +=  "<option>"+rokus.shift();+ "</option>"//TODOHERE
 		}
@@ -48,12 +48,12 @@ function loadedframe(){
 function checkRokuLoadResult(){
 	var result 
 	if (rokuFound == true ){
-	 result = "Loaded: " + address + "<br>";
+	 result = "Found: " + address + "<br>";
 	 rokus.push(address);
 	} else {
-	 result = "Not Loaded: " + address + "<br>";
+	 result = "Not found: " + address + "<br>";
 	}
-	document.getElementById('rokus').innerHTML=result + "Total: " + rokus.length;
+	document.getElementById('rokus').innerHTML=result + "Total found: " + rokus.length;
 	lastOctet++;
 	findRokus();
 }
@@ -75,10 +75,10 @@ function Scan(){
 	</head>
 	<body>
 		<div id="content">
-		<h1>Scan Network for Rokus</h1>
-		<label>Network Base Address: </label>
+		<h1>Find My Roku</h1>
+		<label>My Network: </label>
 		<input class="address" id="octet1" value="192" />.<input class="address" id="octet2" value="168" />.<input class="address" id="octet3" value="1" />.X<br>
-		<label>Number of Rokus: </label>
+		<label>How Many Rokus? </label>
 		<select id="num" />
 		<option value="1">1</option>
 		<option value="2">2</option>
