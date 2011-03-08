@@ -62,7 +62,7 @@ function Scan(){
 	if(canceled==false){
 		document.getElementById('scan').innerHTML="Cancel Scan";
 		cancel = false
-		canceled=true;
+		canceled = true;
 		findRokus();
 		}
 	else{
@@ -71,7 +71,6 @@ function Scan(){
 		document.getElementById('scan').innerHTML="Scan";
 		}
 }
-
 		</script>
 	</head>
 	<body>
@@ -80,12 +79,29 @@ function Scan(){
 		<label>Network Base Address: </label>
 		<input class="address" id="octet1" value="192" />.<input class="address" id="octet2" value="168" />.<input class="address" id="octet3" value="1" />.X<br>
 		<label>Number of Rokus: </label>
-		<input id="num" value="1" /><!--TODO VALIDATE VAR IS A NUMBER!!!!!! -->
+		<select id="num" />
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		</select> 
+		<button id="scan" onclick="Scan();">Scan</button>
 		<iframe style="visibility:none; display: none;"
 		id="apps" src="about:blank" onload="loadedframe();">
 		</iframe>
 		</div>
-		<button id="scan" onclick="Scan();">Scan</button>
+		
 		<div id="rokus"></div>
 	</body>
 </html>
