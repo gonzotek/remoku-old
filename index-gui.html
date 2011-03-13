@@ -8,6 +8,17 @@
 <title>Remoku</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <style type="text/css">
+#FindRokuDiv{
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	
+	}
+.address{
+	width:25px;
+	}
+
 
 .link{
 	cursor:pointer;
@@ -24,6 +35,7 @@ body
 {
 	border-width: 0px;
 	background-color:#000000;
+	color:#FFFFFF;
 	border:0;
 	padding:0;
 	margin:0;
@@ -35,6 +47,7 @@ td,tr{
 	border-style: none;
 	border-collapse: collapse;
 	background-color: rgb(0, 0, 0);
+
 }
 
 	
@@ -55,6 +68,80 @@ table{
 //Copyright 2011 
 //Licensed: NEW BSD
 
+///////////////////////////
+//BEGIN DISCOVERY FUNCTIONS
+var rokuFound = false;
+var lastOctet = 1;
+var address   = "";
+var rokus     = [];
+var rokuCount = 2;
+var canceled = false;
+var cancel;
+
+
+function useRoku(){
+	rokuAddress = document.getElementById('rokuselect').options[document.getElementById('rokuselect').selectedIndex].value;
+	}
+
+function findRokus(){
+	var ifr = document.getElementById('apps');
+	if (lastOctet<255 && rokus.length != document.getElementById('num').value && cancel!=true){
+		rokuFound = false;
+		address = document.getElementById('octet1').value+"."+document.getElementById('octet2').value+"."+document.getElementById('octet3').value+"."+lastOctet;
+		ifr.src = "http://" + address +":8060/query/apps";
+		setTimeout('checkRokuLoadResult()',750);
+	}else{
+		lastOctet = 1;
+		ifr.src = "about:blank";
+		//document.getElementById('rokus').innerHTML=rokus;
+		var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
+		while(rokus.length>0){
+			rokupicker +=  "<option>"+rokus.shift();+ "</option>"//TODOHERE
+		}
+		rokupicker +="<select></form>";
+		document.getElementById('rokus').innerHTML=rokupicker;
+		cancel=false;
+		document.getElementById('scan').innerHTML="Scan";
+		canceled = false;
+		return true;
+		}
+}
+
+function loadedframe(){
+	rokuFound = true;
+}
+
+function checkRokuLoadResult(){
+	var result 
+	if (rokuFound == true ){
+	 result = "Found: " + address + "<br>";
+	 rokus.push(address);
+	} else {
+	 result = "Not found: " + address + "<br>";
+	}
+	document.getElementById('rokus').innerHTML=result + "Total found: " + rokus.length;
+	lastOctet++;
+	findRokus();
+}
+
+function Scan(){
+	if(canceled==false){
+		document.getElementById('scan').innerHTML="Cancel Scan";
+		cancel = false
+		canceled = true;
+		findRokus();
+		}
+	else{
+		canceled = false;
+		cancel = true;
+		document.getElementById('scan').innerHTML="Scan";
+		}
+}
+//END DISCOVERY FUNCTIONS
+/////////////////////////
+
+
+
 //HELPER FUNCTIONS
 
 
@@ -62,6 +149,7 @@ table{
 * purpose: gets all elements based off of a class
 * input: String, String (optional)
 * output: none
+* http://www.actiononline.biz/web/code/how-to-getelementsbyclass-in-javascript-the-code/
 */
 function getElementsByClass(theClass, classType)
 {
@@ -107,6 +195,8 @@ function rokupost(action, param){
 	return false;
 }
 
+
+//GUI BINDINGS
 function btnDown(){
 	lastBtn = this.id;
 	rokupost("keydown",this.id);
@@ -115,6 +205,8 @@ function btnUp(){
 	rokupost("keyup",lastBtn);
 }
 
+//INITIALIZATION
+var remoteButtons;
 window.onload = function(){
 	rokupostframe.name="rokuresponse"
 	rokupostframe.id="rokuresponse";
@@ -129,6 +221,14 @@ window.onload = function(){
 	rokupostform.target="rokuresponse";
 	rokupostform = document.body.appendChild(rokupostform);
 	
+	remoteButtons = getElementsByClass("link");
+	//alert(remoteButtons);
+	for(var i=0; i<remoteButtons.length; i++){
+		remoteButtons[i].onmousedown = btnDown;
+		remoteButtons[i].ontouchstart = btnDown;
+		remoteButtons[i].onmouseup = btnUp;
+		remoteButtons[i].ontouchend = btnUp;
+	}
 	}
 
 </script>
@@ -147,8 +247,8 @@ window.onload = function(){
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/back.png" class="link" id="return"></td>
-					<td><img src="images/home.png" class="link" id="home"></td>
+					<td><img src="images/back.png" class="link" id="Return"></td>
+					<td><img src="images/home.png" class="link" id="Home"></td>
 				</tr>
 			</table>
 		</td>
@@ -159,7 +259,7 @@ window.onload = function(){
 			<table >
 				<tr>
 					<td><img src="images/top_left_corner.png"></td>
-					<td><img src="images/up.png" class="link" id="up"></td>
+					<td><img src="images/up.png" class="link" id="Up"></td>
 					<td><img src="images/top_right_corner.png"></td>
 				</tr>
 			</table>
@@ -169,9 +269,9 @@ window.onload = function(){
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/left.png" class="link" id="left"></td>
-					<td><img src="images/ok.png" class="link" id="select"></td>
-					<td><img src="images/right.png" class="link" id="right"></td>
+					<td><img src="images/left.png" class="link" id="Left"></td>
+					<td><img src="images/ok.png" class="link" id="Select"></td>
+					<td><img src="images/right.png" class="link" id="Right"></td>
 				</tr>
 			</table>
 		</td>
@@ -181,7 +281,7 @@ window.onload = function(){
 			<table >
 				<tr>
 					<td><img src="images/bottom_left_corner.png"></td>
-					<td><img src="images/down.png" class="link" id="down"></td>
+					<td><img src="images/down.png" class="link" id="Down"></td>
 					<td><img src="images/bottom_right_corner.png"></td>
 				</tr>
 			</table>
@@ -191,8 +291,8 @@ window.onload = function(){
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/replay.png" class="link" id="replay"></td>
-					<td><img src="images/info.png" class="link" id="info"></td>
+					<td><img src="images/replay.png" class="link" id="Replay"></td>
+					<td><img src="images/info.png" class="link" id="Info"></td>
 				</tr>
 			</table>
 		</td>
@@ -201,9 +301,9 @@ window.onload = function(){
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/previous.png" class="link" id="rev"></td>
-					<td><img src="images/play.png" class="link" id="play"></td>
-					<td><img src="images/next.png" class="link" id="fwd"></td>
+					<td><img src="images/previous.png" class="link" id="Rev"></td>
+					<td><img src="images/play.png" class="link" id="Play"></td>
+					<td><img src="images/next.png" class="link" id="Fwd"></td>
 				</tr>
 			</table>
 		</td>
@@ -212,6 +312,34 @@ window.onload = function(){
 		<td colspan="3"><img src="images/bottom_edge.png"></td>
 	</tr>
 </table>
- 
+ 		<div id="FindRokuDiv">
+		<h1>Find My Roku</h1>
+		<label>My Network: </label>
+		<input class="address" id="octet1" value="192" />.<input class="address" id="octet2" value="168" />.<input class="address" id="octet3" value="1" />.X<br>
+		<label>How Many Rokus? </label>
+		<select id="num" />
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		</select> 
+		<button id="scan" onclick="Scan();">Scan</button>
+		<iframe style="visibility:none; display: none;"
+		id="apps" src="about:blank" onload="loadedframe();">
+		</iframe>
+		<div id="rokus"></div>
+		</div>
+		
 </body>
 </html>
