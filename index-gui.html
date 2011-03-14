@@ -16,6 +16,9 @@
 .address{
 	width:25px;
 	}
+.maddress{
+	width:115px;
+	}
 
 
 .link{
@@ -151,8 +154,36 @@ var cancel;
 function useRoku(){
 	rokuAddress = document.getElementById('rokuselect').options[document.getElementById('rokuselect').selectedIndex].value;
 	createCookie("rokuAddress", rokuAddress, 365);
-	}
+}
 
+function manualAdd(){
+	address = document.getElementById('maddress').value;
+	try
+	{
+		rokus = readCookie("rokus").split(",");
+	}
+	catch(err)
+	{
+		rokus = [];
+	}
+	if (address!=null){
+	if(!include(rokus,address))rokus.push(address);
+	var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
+	createCookie("rokus", rokus.join(","), 365);
+	if (rokus.length==1)rokuAddress = rokus[0];
+		while(rokus.length>0){
+			var r = rokus.shift();
+			if(rokuAddress==r){
+				rokupicker +=  "<option selected=selected>" + r + "</option>"//TODOHERE
+			}else{
+				rokupicker +=  "<option>" + r + "</option>"
+			}
+		}
+		rokupicker +="<select></form>";
+		document.getElementById('rokus').innerHTML=rokupicker;
+	}
+}	
+	
 function findRokus(){
 	var ifr = document.getElementById('apps');
 	if (lastOctet<255 && rokus.length != document.getElementById('num').value && cancel!=true){
@@ -166,12 +197,13 @@ function findRokus(){
 		//document.getElementById('rokus').innerHTML=rokus;
 		createCookie("rokus", rokus.join(","), 365);
 		var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
+		if (rokus.length==1)rokuAddress = rokus[0];
 		while(rokus.length>0){
 			var r = rokus.shift();
 			if(rokuAddress==r){
 				rokupicker +=  "<option selected=selected>" + r + "</option>"//TODOHERE
 			}else{
-				rokupicker +=  "<option>" + r + "</option>"
+				if (r!="")rokupicker +=  "<option>" + r + "</option>"
 			}
 		}
 		rokupicker +="<select></form>";
@@ -258,31 +290,29 @@ var rokuAddress;
 window.onload = function(){
 	window.scrollTo(0, 1);
 	rokuAddress = readCookie("rokuAddress");	
-	if (rokuAddress==null) {
-		//alert("No Cookie");
-		//showConfig();
-	} else{
-		//alert(rokuAddress);
+	try
+	{
+		rokus = readCookie("rokus").split(",");
 	}
-	rokus = readCookie("rokus").split(",");
-	if (rokus==null) {
-		//alert("No Rokus");
-		//showConfig();
-	} else{
-		//alert(rokus);
+	catch(err)
+	{
+		rokus = [];
 	}
-	var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
-		while(rokus.length>0){
-			var r = rokus.shift();
-			if(rokuAddress==r){
-				rokupicker +=  "<option selected=selected>" + r + "</option>"//TODOHERE
-			}else{
-				rokupicker +=  "<option>" + r + "</option>"
+	if (rokus.length>0){
+		if (rokus[0]=="")rokus.shift();
+		var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
+			while(rokus.length>0){
+				var r = rokus.shift();
+				if(rokuAddress==r){
+					rokupicker +=  "<option selected=selected>" + r + "</option>"//TODOHERE
+				}else{
+					if(r!="")rokupicker +=  "<option>" + r + "</option>";
+				}
 			}
-		}
-		rokupicker +="<select></form>";
-		document.getElementById('rokus').innerHTML=rokupicker;
-	
+			rokupicker +="<select></form>";
+			document.getElementById('rokus').innerHTML=rokupicker;
+	}
+
 	rokupostframe.name="rokuresponse"
 	rokupostframe.id="rokuresponse";
 	rokupostframe.style.visibility="hidden";
@@ -394,7 +424,7 @@ function hideURLbar(){
 		<label>My Network: </label>
 		<input class="address" id="octet1" value="192" />.<input class="address" id="octet2" value="168" />.<input class="address" id="octet3" value="1" />.X<br>
 		<label>How Many Rokus? </label>
-		<select id="num" />
+		<select id="num">
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
@@ -411,7 +441,8 @@ function hideURLbar(){
 		<option value="14">14</option>
 		<option value="15">15</option>
 		</select> 
-		<button id="scan" onclick="Scan();">Scan</button>
+		<button id="scan" onclick="Scan();">Scan</button><br>
+		<label>Direct Add: </label><input class="maddress" id="maddress" value="192.168.1.3" /><button id="add" onclick="manualAdd();">+</button><br>
 		<iframe style="visibility:none; display: none;"
 		id="apps" src="about:blank" onload="loadedframe();">
 		</iframe>
