@@ -1,60 +1,89 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset=utf-8>
-		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-		<title>Remoku</title>
-		<script type="text/javascript">
-		var rokuFound = false;
-		var lastOctet = 1;
-		var address   = "";
-		var rokus     = [];
-		var rokuCount = 2;
-		function findRokus(){
-			var ifr = document.getElementById('apps');
-			if (lastOctet<20 || rokus.count() != rokuCount){
-				rokuFound = false;
-				address = "192.168.1."+lastOctet;
-				ifr.src = "http://" + address +":8060/query/apps";
-				setTimeout('checkRokuLoadResult()',500);
-			}else{
-				lastOctet = 1;
-				ifr.src = "about:blank";
-				document.getElementById('rokus').innerHTML=rokus;
-				return true;
-				}
-		}
-		
-		function loadedframe(){
-			rokuFound = true;
-		}
-		
-		function checkRokuLoadResult(){
-			var result 
-			if (rokuFound == true ){
-			 result = "Loaded: " + address + "<br>";
-			 rokus.push(address);
-			} else {
-			 result = "Not Loaded: " + address + "<br>";
-			}
-			document.getElementById('rokus').innerHTML=result;
-			lastOctet++;
-			findRokus();
-		}
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<title>Remoku</title>
+<style>
+.address{
+	width:30px;}
+</style>
 
-		window.onload = function(){
-			findRokus();
-
-			//client = new XMLHttpRequest();
-			//client.open('POST', 'http://192.168.1.10'  + ':8060/keypress/Home' , false);
-			//try { client.send(); }
-			//catch(e) { console.log(e); }
-
+<script type="text/javascript">
+var rokuFound = false;
+var lastOctet = 1;
+var address   = "";
+var rokus     = [];
+var rokuCount = 2;
+var canceled = false;
+var cancel;
+function findRokus(){
+	var ifr = document.getElementById('apps');
+	if (lastOctet<255 && rokus.length != rokuCount && cancel!=true){
+		rokuFound = false;
+		address = document.getElementById('octet1').value+"."+document.getElementById('octet2').value+"."+document.getElementById('octet3').value+"."+lastOctet;
+		ifr.src = "http://" + address +":8060/query/apps";
+		setTimeout('checkRokuLoadResult()',750);
+	}else{
+		lastOctet = 1;
+		ifr.src = "about:blank";
+		//document.getElementById('rokus').innerHTML=rokus;
+		var rokupicker = "<form><select>";
+		while(rokus.length>0){
+			rokupicker +=  "<option>"+rokus.shift();+ "</option>"//TODOHERE
 		}
+		rokupicker +="<select></form>";
+		document.getElementById('rokus').innerHTML=rokupicker;
+		cancel=false;
+		document.getElementById('scan').innerHTML="Scan";
+		canceled = false;
+		return true;
+		}
+}
+
+function loadedframe(){
+	rokuFound = true;
+}
+
+function checkRokuLoadResult(){
+	var result 
+	if (rokuFound == true ){
+	 result = "Loaded: " + address + "<br>";
+	 rokus.push(address);
+	} else {
+	 result = "Not Loaded: " + address + "<br>";
+	}
+	document.getElementById('rokus').innerHTML=result + "Total: " + rokus.length;
+	lastOctet++;
+	findRokus();
+}
+
+function Scan(){
+	if(canceled==false){
+		document.getElementById('scan').innerHTML="Cancel Scan";
+		cancel = false
+		canceled=true;
+		findRokus();
+		}
+	else{
+		canceled = false;
+		cancel = true;
+		document.getElementById('scan').innerHTML="Scan";
+		}
+}
+
 		</script>
 	</head>
 	<body>
-		<div id="content"><iframe style="visibility:none; display: none; " id="apps" src="about:blank" onload="loadedframe();"></iframe></div>
+		<div id="content">
+		<h1>Scan for Network for Rokus</h1>
+		<label>Network Base Address</label>
+		<input class="address" id="octet1" value="192"></input>.<input class="address" id="octet2" value="168"></input>.<input class="address" id="octet3" value="1"></input>.X
+		<iframe style="visibility:none; display: none;"
+		id="apps" src="about:blank" onload="loadedframe();">
+		</iframe>
+		</div>
 		<div id="rokus"></div>
+		<button id="scan" onclick="Scan();">Scan</button>
 	</body>
 </html>

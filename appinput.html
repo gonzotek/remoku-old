@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 <title>Remoku App Input Test</title>
 <style>
-body{text-align:center;}
-.icons{max-height:50px;}
-li{float:left; list-style-type: none; text-align:center; margin:10px;}
+body{text-align:left; margin:0;padding:0;}
+.icons{max-height:75px;}
+ul{margin:0;padding:0;}
+li{list-style-type: none;  margin-top:5px; margin-left:0px; height:100px; padding:0; }
 a{text-decoration:none;color:black;}
+img{vertical-align:middle; line-height: 2em}
 </style>
 
 <script>
@@ -66,7 +68,7 @@ function clickme(){
 		//alert(appname + " " + appid);
 		var appitem = document.createElement('li');
 		appitem.innerHTML = "<a href='#"+appid+"' onclick='rokulaunch("+ appid +");'>" +
-		"<img class='icons' id=" + appid + " src='' onload='loadRokuImages()'><br>" + 
+		"<img class='icons' id=" + appid + " onload='loadRokuImages()'> " + 
 		appname + "</>"; //src='http://' + rokuAddress +':8060/query/icon/' + appid
 		applist.appendChild(appitem);
 		appidarray.push(appid);
@@ -83,7 +85,39 @@ function clickme(){
 </head>
 <body>
 <div id="container">
-<textarea id="in" style="width:120px; height:120px;"></textarea>
+<textarea id="in" style="width:240px; height:240px;">
+&lt;apps&gt;
+ &lt;app id="11" version="2.1.21"&gt;Roku Channel Store&lt;/app&gt;
+ &lt;app id="12" version="2.2.11"&gt;Netflix&lt;/app&gt;
+ &lt;app id="1453_c" version="1.1.100925"&gt;TuneIn Radio&lt;/app&gt;
+ &lt;app id="28" version="1.0.22"&gt;Pandora&lt;/app&gt;
+ &lt;app id="2049" version="1.82.0"&gt;MOG music&lt;/app&gt;
+ &lt;app id="13" version="1.0.9"&gt;Amazon Instant Video&lt;/app&gt;
+ &lt;app id="2285" version="1.1.3"&gt;Hulu Plus&lt;/app&gt;
+ &lt;app id="2267" version="1.1.0"&gt;HGTV&lt;/app&gt;
+ &lt;app id="1152_1" version="0.0.0"&gt;TED Talks HD&lt;/app&gt;
+ &lt;app id="1968" version="1.0.101028"&gt;Flixster&lt;/app&gt;
+ &lt;app id="45" version="1.5.0"&gt;Revision3&lt;/app&gt;
+ &lt;app id="1489_6" version="1.3.101209"&gt;YouTube&lt;/app&gt;
+ &lt;app id="199" version="1.1.110207"&gt;The TWiT Netcast Network&lt;/app&gt;
+ &lt;app id="1688" version="1.5.110103"&gt;Roku Newscaster&lt;/app&gt;
+ &lt;app id="1980" version="1.1.100907"&gt;Vimeo&lt;/app&gt;
+ &lt;app id="1997" version="1.1.5"&gt;Chow&lt;/app&gt;
+ &lt;app id="1418_0" version="1.2.20"&gt;Nowhere TV&lt;/app&gt;
+ &lt;app id="1883" version="1.1.1"&gt;Picasa Web Albums&lt;/app&gt;
+ &lt;app id="2785" version="1.4.0"&gt;iTunes Podcasts&lt;/app&gt;
+ &lt;app id="2898" version="0.0.0"&gt;Weather Underground&lt;/app&gt;
+ &lt;app id="3032" version="1.3.0"&gt;tv.com&lt;/app&gt;
+ &lt;app id="2835_f" version="1.0.110112"&gt;Roku USB Media Player&lt;/app&gt;
+ &lt;app id="3261" version="1.0.3"&gt;Photo Puzzle&lt;/app&gt;
+ &lt;app id="2115" version="1.4.1"&gt;SHOUTcast Internet Radio&lt;/app&gt;
+ &lt;app id="3128" version="1.0.135"&gt;Gabby (Beta)&lt;/app&gt;
+ &lt;app id="1616" version="1.0.1"&gt;NASA TV&lt;/app&gt;
+ &lt;app id="2946_2" version="1.0.12"&gt;FoxNews.com Live&lt;/app&gt;
+ &lt;app id="2016_b" version="2.0.19"&gt;Movies on Demand&lt;/app&gt;
+ &lt;app id="dev" version="0.1.7"&gt;Quick Stream&lt;/app&gt;
+&lt;/apps&gt;
+</textarea>
 <button id="clickme" onclick="clickme();">Submit Apps</button>
 </div>
 <div id="apps">
