@@ -1,0 +1,148 @@
+#config{
+	margin-left:auto;
+	margin-right:auto;
+	height:373px;
+	
+	}
+.address{
+	width:25px;
+	}
+.maddress{
+	width:115px;
+	}
+
+
+.link{
+	cursor:pointer;
+	}
+
+img{
+	padding:0px;
+	margin:0px;
+	border-width: 0px;
+	float:left;
+	-webkit-touch-callout:none;
+}
+
+body
+{
+	border-width: 0px;
+	background-color:#000000;
+	color:#FFFFFF;
+	border:0;
+	padding:0;
+	margin:0;
+}
+
+td,tr{
+	border-width: 0px;
+	padding: 0px;
+	border-style: none;
+	border-collapse: collapse;
+	background-color: rgb(0, 0, 0);
+
+}
+
+	
+table{
+	border-width: 0px;
+	border-spacing:0px ;
+	border-style: none;
+	background-color: rgb(0, 0, 0);
+	display:table;
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+#remote{height:373px;}
+
+#nav{ margin-top:2px; margin-left:auto;margin-right:auto; display:table;}
+
+    /* Nav Container */
+    /* iPhone-esque design by Jordan Dobson http://JordanDobson.com  */
+      nav{
+        background-color:       #000;
+        padding:                .1em 0;
+        position:               relative;
+        bottom:                 0;
+       /* width:                  100%; */
+        border-top:             .05em solid rgba(255,255,255,.33);
+        -webkit-box-shadow:     0 -0.05em 0 rgba(0,0,0,0.9);
+        background-image:       -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,.15)), color-stop(0.5, rgba(255,255,255,.10)), color-stop(0.505, rgba(255,255,255,.0)), to(rgba(255,255,255,.0)));
+      }
+      
+    /* Nav item Example */
+      
+      a{
+        margin:                 0 auto;
+        width:                  3.5em;
+        height:                 2.5em;
+        position:               relative;
+        border-radius:          .25em;
+        display:                inline-block;
+        vertical-align:         middle;
+        	cursor:pointer;
+
+      }
+      
+      a > strong{
+        position:               absolute;
+        font-size:              .5em;
+        color:                  #999;
+        bottom:                 0;
+        width:                  100%;
+        text-align:             center;
+        line-height:            1.5em;
+        font-weight:            bold;
+        -webkit-font-smoothing: antialiased;
+      }
+ 
+      a::after,
+      a::before{
+        position:               absolute;
+        content:                " ";
+        top:                    -.5em;
+        left:                   0;
+        right:                  0;
+        bottom:                 0;
+        -webkit-mask-image:     url('target.png');
+        -webkit-mask-position:  center center;
+        -webkit-mask-repeat:    no-repeat;
+      }
+      
+      a::before{
+        background-image:       -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ccc), to(#333));
+        z-index:                1;
+      }
+      
+      a::after{
+        margin-top:             -.1em;
+        background-color:       rgba(0,0,0,.75);
+        z-index:                0;
+      }
+      
+    /* Hover !! Probably would want to changes classes instead - I have for hover just for this example */
+      
+      a.active{
+        background-color:       rgba(255,255,255,.10);
+      }
+      
+      a.active > strong{
+        color:                  #fff;
+      }
+      
+      a.active::before{
+        background:             -webkit-gradient(linear, 38% 0%, 60% 70%, from(#DDE9F0), color-stop(0.6, #79B2EC), color-stop(0.7, #2E91E5), to(#3FC5F8));
+      }
+      
+      a.active::after{
+        margin-top:             .1em;
+      }
+      
+    /* Navigation Mask Image Base64 Encoded - Hey! Why make another request for an image when you can include it in your CSS? */
+    
+      a::after,
+      a::before{
+        -webkit-mask-image:     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAftJREFUeNrEls9mA1EUxpOG0lXIKgylhFBCGbIqoXQVQskj5An6DCGrEEoeoHRdusmimxBCSaVUKVmlQiqUdpMKqfYMZ+LL17nzLyGXH5Mz95wzN/c7955kItwoCBfCuXAgnKj9SfgW7oVb4Tmx4XCSvAq/IXHmVuMkOhT6ERIxfY0RapSEDwrg/G4LFcEWUoqttrbBpxQm2QKc5kJDSIf40LTOnYP/wi/pkTCDyVOhGGM7iurrxplp7H+jB5MmHnuQF5rCQFgqA7XlPTQwgXg9Tlalv4FXdkl/FTPXObxS3J419aL0G2DfFzoR1NlRH3c0qGRWQnGNn0IGHFoUsKuqtJSK2nBOE/wzGtN9V+KvuKHTZWlYOQ+M4fgcw7s2x8AvrBhW19W6M40UiQ5XWaE4a6WQN+zrKdXqg1Iiuzv/BewWlciakrDATfYp1SoWPmoBhbeqgL0Yhf0T4jlFCVfDSfgFv7Pw/EYCckdNeFdqYLcNvhY8f/mJ5moD0bT8RIOSvt5SWRT8yoILP21YJRZ+VvEq/BYJCQv/bCdHm9fhbW/h8LbJpxp0PVmG62kI84aG68mi66nvtfE5OnXGG1zAYzpdclFajHqEFqMepcUIaqIcxZahJ03oc1nfxWqidtImsnpHERKNghrhZMjEbv/p1+rfCY9Bgf4EGAD5Vle3lIQs2gAAAABJRU5ErkJggg==);
+      }
+

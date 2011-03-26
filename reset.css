@@ -1,0 +1,61 @@
+/* Eric Meyer Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, i, b, u, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin:          0;
+	padding:         0;
+	border:          0;
+	outline:         0;
+	font-weight:     normal;
+	font-style:      normal;
+	font-size:       100%;
+	font-family:     inherit;
+	vertical-align:  baseline;
+	list-style:      none;
+  text-decoration: none;
+  line-height:     1;
+}
+:focus { outline:  0;}
+abbr { border:     none;}
+
+hr, .hide{ 
+  display:          none;
+}
+html, body, article, section, footer, header, aside, nav, figure, hgroup{
+  display:          block;
+}
+input, textarea, select, button{
+  padding:          0;
+  margin:           0;
+  vertical-align:   middle;
+  display:          block;
+  background-color: #ddd;
+  border:           none;
+  width:            100%;
+  font-size:        2em;
+}
+textarea{
+  max-width: 100%;
+}
+input:hover, textarea:hover, select:hover, button:hover{
+  background-color: #eee;
+}
+body{
+  color:            #333;
+  background-color: #999;
+  font-size:        125%;
+  text-align:       center;
+  font-family:      helvetica, arial, sans-serif;
+  position:         relative;
+}
+
+body > p{
+  margin-top:       1em;
+  text-shadow:      0 .05em 0.05em rgba(255,255,255,.5);
+  padding: 0 1em;
+}
+
+.symbols{
+  xcontent: "\261A"; /* Hand */
+  xcontent: "\2638"; /* Wheel */
+  xcontent: "\26A0 "; /* Warning */
+  xcontent: "\2699 "; /* GEAR */
+}
