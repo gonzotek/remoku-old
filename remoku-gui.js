@@ -210,12 +210,14 @@ function loadRokuImages(){
 	}
 
 function rokuApps(){
+	alert ("rokuapps");
 	rokuAddress = readCookie("rokuAddress");
 	var textin = document.getElementById("channelinput").value;
 	if(localStorage)localStorage.setItem('apps', textin);
 	//createCookie("apps", textin, 365);
 	var applist = document.getElementById("applist");
 	var apparray = [];
+	var xmlDoc;
 	if (window.DOMParser)
 		{
 		parser=new DOMParser();
@@ -227,16 +229,20 @@ function rokuApps(){
 		xmlDoc.async="false";
 		xmlDoc.loadXML(textin);
 		}
+	alert (textin);
 	apps = xmlDoc.getElementsByTagName("app");
+	alert(apps.length);//WHY IS THIS ZERO ON IPHONE !!!!????
 	var list = "";
 	for (i=0;i<apps.length;i++)
 		{
 		var appid = apps[i].attributes.getNamedItem("id").value;
 		var appname = (apps[i].childNodes[0].nodeValue);
+		alert(appname);
 		var htmlitem = "<li><a href='#" + appid + "' onclick='rokulaunch(" + appid + ");'>" +
 		"<img class='icons' id='" + appid + "' onload='loadRokuImages()' src='' > " + 
 		appname + "</></li>"; //src='http://' + rokuAddress +':8060/query/icon/' + appid
 		list += htmlitem;
+		alert(htmlitem);
 		//applist.appendChild(appitem);
 		appidarray.push(appid);
 		}
@@ -279,7 +285,7 @@ function activateButton(){
 			navArray[i].setAttribute("class", "nav");
 		}
 	}
-	if(this.id == "navapps"){rokuApps();}
+	if(this.id == "navapps"){rokuApps();alert(this.id);}
 	setTimeout(hideURLbar, 100);
 }
 
@@ -317,7 +323,6 @@ var screenArray = new Array();
 window.onload = function(){
 	window.scrollTo(0, 1);
 	rokuAddress = readCookie("rokuAddress");
-	alert(rokuAddress);
 	try
 	{
 		rokus = readCookie("rokus").split(",");
