@@ -21,7 +21,6 @@ function createCookie(name,value,days) {
     var expires = "; expires="+date.toGMTString();
   }
   else var expires = "";
-  //alert(name+"="+value+expires+"; path=/");
   document.cookie = name+"="+value+expires+"; path=/";
 }
 
@@ -231,9 +230,7 @@ function rokuApps(){
 	for (i=0;i<apps.length;i++)
 		{
 		var appid = apps[i].attributes.getNamedItem("id").value;
-		//alert(appid);
 		var appname = (apps[i].childNodes[0].nodeValue);
-		//alert(appname + " " + appid);
 		var htmlitem = "<li><a href='#" + appid + "' onclick='rokulaunch(" + appid + ");'>" +
 		"<img class='icons' id=" + appid + " onload='loadRokuImages()'> " + 
 		appname + "</></li>"; //src='http://' + rokuAddress +':8060/query/icon/' + appid
@@ -273,14 +270,13 @@ function activateButton(){
 			navArray[i].setAttribute("class", "active nav");
 			screenArray[i].style.visibility = "visible";
 			screenArray[i].style.display = "block";
-			//if(this.id == "navapps"){rokuApps();}
 		} else {
-			alert("hiding " + i);
 			screenArray[i].style.visibility = "hidden";
 			screenArray[i].style.display = "none";
 			navArray[i].setAttribute("class", "nav");
 		}
 	}
+	if(this.id == "navapps"){rokuApps();}
 	setTimeout(hideURLbar, 100);
 }
 
