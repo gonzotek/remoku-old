@@ -220,8 +220,10 @@ function rokuApps(){
 	var xmlDoc;
 	if (window.DOMParser)
 		{
+			
 		parser=new DOMParser();
 		xmlDoc=parser.parseFromString(textin,"text/xml");
+		alert((new XMLSerializer()).serializeToString(xmlDoc));
 		}
 	else // Internet Explorer
 		{
@@ -230,19 +232,19 @@ function rokuApps(){
 		xmlDoc.loadXML(textin);
 		}
 	alert (textin);
-	apps = xmlDoc.getElementsByTagName("app");
+	var apps = xmlDoc.getElementsByTagName("app");
 	alert(apps.length);//WHY IS THIS ZERO ON IPHONE !!!!????
 	var list = "";
 	for (i=0;i<apps.length;i++)
 		{
 		var appid = apps[i].attributes.getNamedItem("id").value;
 		var appname = (apps[i].childNodes[0].nodeValue);
-		alert(appname);
+		//alert(appname);
 		var htmlitem = "<li><a href='#" + appid + "' onclick='rokulaunch(" + appid + ");'>" +
 		"<img class='icons' id='" + appid + "' onload='loadRokuImages()' src='' > " + 
 		appname + "</></li>"; //src='http://' + rokuAddress +':8060/query/icon/' + appid
 		list += htmlitem;
-		alert(htmlitem);
+		//alert(htmlitem);
 		//applist.appendChild(appitem);
 		appidarray.push(appid);
 		}
@@ -384,7 +386,8 @@ window.onload = function(){
 	navText.onclick = activateButton;
 	navApps.onclick = activateButton;
 	navConfig.onclick = activateButton;
-	
+	//yesno = confirm("What?");
+	//alert(yesno);
 }
 
 //Hide iPhone URL bar
