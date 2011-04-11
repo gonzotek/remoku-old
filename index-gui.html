@@ -87,7 +87,14 @@
 	</tr>
 </table>
 </div>
+<div id="text" style="visibility:hidden;display:none;"></div>
+<div id="apps" style="visibility:hidden;display:none;">
+<ul id="applist">
+</ul>
+</div>
+
 <div id="config" style="visibility:hidden;display:none;">
+		<h1>Find My Roku</h1>
 		<label>My Network: </label>
 		<input class="address" id="octet1" value="192" /> .
 		<input class="address" id="octet2" value="168" /> .
@@ -113,26 +120,46 @@
 		</select> 
 		<button id="scan" onclick="Scan();">Scan</button><br>
 		<label>Direct Add: </label><input class="maddress" id="maddress" value="192.168.1.3" /><button id="add" onclick="manualAdd();">+</button><br>
-		<iframe style="visibility:none; display: none;" id="apps" src="about:blank">
+		<iframe style="visibility:none; display: none;" id="rokuloadframe" src="about:blank">
 		</iframe>
 		<div id="rokus"></div>
+		<h2>Channel XML</h2>
+		<textarea id="channelinput" style="width: 100%; height:75px;">
+&lt;apps&gt;
+ &lt;app id="11" version="2.1.21"&gt;Roku Channel Store&lt;/app&gt;
+ &lt;app id="12" version="2.2.11"&gt;Netflix&lt;/app&gt;
+&lt;/apps&gt;
+</textarea>
+<button id="clickme" onclick="rokuApps();">Submit Apps</button>
+
 </div>
-
-<nav id="nav"> 
-	<a  class="active" id="navremote"> 
-	<strong>Remote</strong> 
-	</a> 
-	<a  class="" id="navsearch"> 
-	<strong>Search</strong> 
-	</a> 
-	<a  class="" id="navapps"> 
-	<strong>Channels</strong> 
-	</a> 
-	<a  class="" id="navconfig"> 
-	<strong>Config</strong> 
+<table id="navtable">
+  <tr>
+	<td>
+	<a  class="active nav" id="navremote">
+	<img src="images/remote.png" style="clear:both;float:none;margin-left:auto;margin-right:auto;text-align:center; display:block;">
+	<div>Remote</div> 
 	</a>
-</nav> 
-
-		
+	</td>
+	<td>
+	<a   class="nav" id="navtext"> 
+	<img src="images/keyboard_magnify.png"  style="clear:both;float:none;margin-left:auto;margin-right:auto;text-align:center; display:block;">
+	<div>Text</div> 
+	</a>
+	 </td>
+	<td>
+	<a  class="nav" id="navapps"> 
+	<img src="images/application_view_tile.png"  style="clear:both;float:none;margin-left:auto;margin-right:auto;text-align:center; display:block;">
+	<div>Channels</div> 
+	</a>
+	</td>
+	<td>
+	<a   class="nav" id="navconfig"> 
+	<img src="images/setting_tools.png"  style="clear:both;float:none;margin-left:auto;margin-right:auto;text-align:center; margin-top:0;margin-bottom:0;display:block;">
+	<div>Settings</div> 
+	</a>
+	</td>
+  <tr>
+</table> 
 </body>
 </html>

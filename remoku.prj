@@ -1,5 +1,4 @@
 <project version="Crimson Editor 3.60">
-	<localfile path="C:\remoku-svn\.htaccess" />
 	<localfile path="C:\remoku-svn\appinput.html" />
 	<localfile path="C:\remoku-svn\cache.manifest" />
 	<localfile path="C:\remoku-svn\index-gui.html" />
@@ -10,14 +9,14 @@
 </project>
 
 <workspace version="Crimson Editor 3.60">
-	<localfile path="C:\remoku-svn\scan.html" linenum="74" placement="0:1:-1:-1:-8:-30:25:25:878:416" />
-	<localfile path="C:\remoku-svn\index-gui.html" linenum="21" placement="2:3:-1:-1:-8:-30:50:50:1400:586" />
-	<localfile path="C:\remoku-svn\remoku.js" linenum="71" placement="0:1:-1:-1:-8:-30:75:75:1425:611" />
-	<localfile path="C:\remoku-svn\index.html" linenum="26" placement="0:1:-1:-1:-8:-30:100:100:1450:636" />
+	<localfile path="C:\remoku-svn\scan.html" linenum="1" placement="0:1:-1:-1:-8:-30:25:25:878:416" />
+	<localfile path="C:\remoku-svn\index-gui.html" linenum="11" placement="0:1:-1:-1:-8:-30:50:50:1400:586" />
+	<localfile path="C:\remoku-svn\remoku.js" linenum="63" placement="0:1:-1:-1:-8:-30:75:75:1425:611" />
+	<localfile path="C:\remoku-svn\index.html" linenum="14" placement="0:1:-1:-1:-8:-30:100:100:1450:636" />
 	<localfile path="C:\remoku-svn\appinput.html" linenum="1" placement="0:1:-1:-1:-8:-30:125:125:1550:527" />
 	<localfile path="C:\remoku-svn\remoku.css" linenum="1" placement="0:1:-1:-1:-8:-30:225:225:1422:761" />
-	<localfile path="C:\remoku-svn\cache.manifest" linenum="1" placement="0:1:-1:-1:-8:-30:250:250:1447:786" />
-	<localfile path="C:\remoku-svn\.htaccess" linenum="1" placement="0:1:-1:-1:-8:-30:0:0:1197:536" />
-	<localfile path="C:\remoku-svn\reset.css" linenum="15" placement="0:1:-1:-1:-8:-30:0:0:1093:536" />
+	<localfile path="C:\remoku-svn\cache.manifest" linenum="2" placement="0:1:-1:-1:-8:-30:250:250:1447:786" />
+	<localfile path="C:\remoku-svn\remoku-gui.css" linenum="87" placement="2:3:-1:-1:-8:-30:125:125:1295:661" />
+	<localfile path="C:\remoku-svn\remoku-gui.js" linenum="303" placement="0:1:-1:-1:-8:-30:150:150:1320:686" />
 </workspace>
 
