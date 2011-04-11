@@ -102,7 +102,7 @@ function manualAdd(){
 	if(!include(rokus,address))rokus.push(address);
 	var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
 	createCookie("rokus", rokus.join(","), 365);
-	if (rokus.length==1)rokuAddress = rokus[0];
+	if (rokus.length==1){rokuAddress = rokus[0];createCookie("rokuAddress",rokus[0],365);}
 		while(rokus.length>0){
 			var r = rokus.shift();
 			if(rokuAddress==r){
@@ -133,7 +133,7 @@ function findRokus(){
 		//document.getElementById('rokus').innerHTML=rokus;
 		createCookie("rokus", rokus.join(","), 365);
 		var rokupicker = "<form>Control this Roku: <select id='rokuselect' onchange='useRoku();'>";
-		if (rokus.length==1)rokuAddress = rokus[0];
+		if (rokus.length==1){rokuAddress = rokus[0]; createCookie("rokuAddress",rokus[0],365);}
 		while(rokus.length>0){
 			var r = rokus.shift();
 			if(rokuAddress==r){
@@ -204,7 +204,9 @@ function rokupost(action, param){
 
 function loadRokuImages(){
 	var appid = appidarray.shift();
-	if(appid!=null)document.getElementById(appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
+	//alert ('http://' + rokuAddress + ':8060/query/icon/' + appid);
+	var dt = new Date();
+	if(appid!=null)document.getElementById(appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid + "#" + dt.getTime();
 	}
 
 function rokuApps(){
@@ -232,7 +234,7 @@ function rokuApps(){
 		var appid = apps[i].attributes.getNamedItem("id").value;
 		var appname = (apps[i].childNodes[0].nodeValue);
 		var htmlitem = "<li><a href='#" + appid + "' onclick='rokulaunch(" + appid + ");'>" +
-		"<img class='icons' id=" + appid + " onload='loadRokuImages()'> " + 
+		"<img class='icons' id='" + appid + "' onload='loadRokuImages()' src='' > " + 
 		appname + "</></li>"; //src='http://' + rokuAddress +':8060/query/icon/' + appid
 		list += htmlitem;
 		//applist.appendChild(appitem);
@@ -240,8 +242,9 @@ function rokuApps(){
 		}
 		applist.innerHTML = list;
 	appid = appidarray.shift();
-	
-	if(appid!=null)document.getElementById(appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
+	//alert(appid);
+	var dt = new Date();
+	if(appid!=null)document.getElementById(appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid + "#" + dt.getTime();
 
 		// Move innerHTML calls to array, 
 }
@@ -313,7 +316,8 @@ var screenArray = new Array();
 
 window.onload = function(){
 	window.scrollTo(0, 1);
-	rokuAddress = readCookie("rokuAddress");	
+	rokuAddress = readCookie("rokuAddress");
+	alert(rokuAddress);
 	try
 	{
 		rokus = readCookie("rokus").split(",");

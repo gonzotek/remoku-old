@@ -19,8 +19,8 @@
 	}
 #apps .icons{max-height:75px;}	
 #apps ul{margin:0;padding:0; }
-#apps li{list-style-type: none;  margin-top:5px; margin-left:0px; height:100px; padding:0; }
-#apps a{text-decoration:none;color:black;}
+#apps li{list-style-type: none;  margin-top:5px; margin-left:0px; height:100px; padding:0;vertical-align:middle; }
+#apps a{text-decoration:none;color:white; vertical-align:middle;}
 #apps img{vertical-align:middle; line-height: 2em}
 
 	
@@ -91,7 +91,7 @@ table{
 
 
 #navtable{
-	margin-top:0
+	margin-top:0;
     border-width: 0px;
 	border-spacing:0px ;
 	border-style: none;
