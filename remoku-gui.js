@@ -210,7 +210,7 @@ function loadRokuImages(){
 	}
 
 function rokuApps(){
-	alert ("rokuapps");
+	//alert ("rokuapps");
 	rokuAddress = readCookie("rokuAddress");
 	var textin = document.getElementById("channelinput").value;
 	if(localStorage)localStorage.setItem('apps', textin);
@@ -223,7 +223,7 @@ function rokuApps(){
 			
 		parser=new DOMParser();
 		xmlDoc=parser.parseFromString(textin,"text/xml");
-		alert((new XMLSerializer()).serializeToString(xmlDoc));
+		//alert((new XMLSerializer()).serializeToString(xmlDoc));
 		}
 	else // Internet Explorer
 		{
@@ -231,9 +231,9 @@ function rokuApps(){
 		xmlDoc.async="false";
 		xmlDoc.loadXML(textin);
 		}
-	alert (textin);
+	//alert (textin);
 	var apps = xmlDoc.getElementsByTagName("app");
-	alert(apps.length);//WHY IS THIS ZERO ON IPHONE !!!!????
+	//alert(apps.length);//WHY IS THIS ZERO ON IPHONE !!!!????
 	var list = "";
 	for (i=0;i<apps.length;i++)
 		{
@@ -287,7 +287,7 @@ function activateButton(){
 			navArray[i].setAttribute("class", "nav");
 		}
 	}
-	if(this.id == "navapps"){rokuApps();alert(this.id);}
+	if(this.id == "navapps"){rokuApps();}
 	setTimeout(hideURLbar, 100);
 }
 
@@ -322,6 +322,23 @@ var appsScreen;
 
 var screenArray = new Array(); 
 
+//var body = '<?xml version="1.0"?><person><name>Arun</name></person>';
+     function beep(){
+	     //alert("invoked");
+	     }
+    function callOtherDomain(){
+	    var invocation = new XMLHttpRequest();
+		var url = 'http://192.168.1.10:8060/query/apps';
+        if(invocation)
+        {
+            invocation.open('GET', url, true);
+            invocation.onreadystatechange = beep;
+            //invocation.setRequestHeader('X-PINGOTHER', 'pingpong');
+            //invocation.setRequestHeader('Content-Type', 'application/xml');
+            //invocation.onreadystatechange = handler;
+            //invocation.send();
+        }
+}
 window.onload = function(){
 	window.scrollTo(0, 1);
 	rokuAddress = readCookie("rokuAddress");
@@ -344,7 +361,7 @@ window.onload = function(){
 					if(r!="")rokupicker +=  "<option>" + r + "</option>";
 				}
 			}
-			rokupicker +="<select></form>";
+			rokupicker +="</select></form><br><a href='http://"+rokuAddress+":8060/query/apps' target='_blank'>Load Apps</a>";
 			document.getElementById('rokus').innerHTML=rokupicker;
 	}
 
@@ -388,6 +405,7 @@ window.onload = function(){
 	navConfig.onclick = activateButton;
 	//yesno = confirm("What?");
 	//alert(yesno);
+	callOtherDomain();
 }
 
 //Hide iPhone URL bar
